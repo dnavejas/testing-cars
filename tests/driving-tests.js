@@ -1,8 +1,8 @@
 var expect = chai.expect;
 
-describe("Driving a Car", function() {
+describe("Driving a Car Forward", function() {
 
-    let sandbox; //added
+    var sandbox; //added
     let car;
 
     beforeEach(function() {
@@ -95,13 +95,93 @@ describe("Driving a Car", function() {
             expect(car.style.left).to.equal('0px');
             });
     });
+});
 
-describe("Adding a Car", function(){
-    let sandbox;
+describe("Driving a Car in Reverse", function(){
+    var sandbox;
+    console.log(sandbox);
     let car;
     
     beforeEach(function(){
-        sandbox = sinon.sanbox.create();
-        
+        sandbox = sinon.sandbox.create();
+        car = {};
+            car.style = {};
+            car.style.top = "";
+            car.style.left = "";
+            car.className = "";
+    });
+
+    afterEach(function() {
+      // restore the environment as it was before
+      sandbox.restore();
+    });
+
+    describe("calling reverse while facing east", function() {
+        it("should move car from left to right", function() {
+
+            //SETUP
+                car.style.top = "0px";
+                car.style.left = "0px";
+                car.className = "car east";
+
+            //ACT
+                reverse(car);
+
+            //ASSERT
+                expect(getDirection(car)).to.equal("EAST");
+                expect(car.style.top).to.equal('0px');
+                expect(car.style.left).to.equal('-10px');
+        });
+    });
+
+    describe("calling reverse while facing west", function() {
+        it("should move car from right to left", function() {
+            //SETUP
+            car.style.top = "0px";
+            car.style.left = "0px";
+            car.className = "car west";
+
+            //ACT
+            reverse(car);
+
+            //ASSERT
+            expect(getDirection(car)).to.equal("WEST");
+            expect(car.style.top).to.equal('0px');
+            expect(car.style.left).to.equal('10px');
+        });
+    });
+
+    describe("calling reverse while facing north", function() {
+        it("should move car from top to bottom", function() {
+            //SETUP
+            car.style.top = "0px";
+            car.style.left = "0px";
+            car.className = "car north";
+
+            //ACT
+            reverse(car);
+
+            //ASSERT
+            expect(getDirection(car)).to.equal("NORTH");
+            expect(car.style.top).to.equal('10px');
+            expect(car.style.left).to.equal('0px');
+        });
+    });
+
+    describe("calling reverse while facing south", function() {
+        it("should move car from bottom to top", function() {
+            //SETUP
+            car.style.top = "0px";
+            car.style.left = "0px";
+            car.className = "car south";
+
+            //ACT
+            reverse(car);
+
+            //ASSERT
+            expect(getDirection(car)).to.equal("SOUTH");
+            expect(car.style.top).to.equal('-10px');
+            expect(car.style.left).to.equal('0px');
+            });
     })
-})})
+})
