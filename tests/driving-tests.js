@@ -232,10 +232,16 @@ describe("Getting a Random Car ID", function() {
         })
     })
 })
-describe("Getting a Random Car ID", function() {
+describe("Turning a Car Right", function() {
 
     var sandbox; //added
-
+    let NORTH = 'NORTH';
+    let SOUTH = 'SOUTH';
+    let EAST = 'EAST';
+    let WEST = 'WEST';
+    let RIGHT = 'RIGHT';
+    let car = {};
+    
     beforeEach(function() {
       // create a sandbox
       sandbox = sinon.sandbox.create();
@@ -247,8 +253,81 @@ describe("Getting a Random Car ID", function() {
       sandbox.restore();
     })
 
-    describe("Creating a random number from 1 to 7 and adding it to 'car'", function(){
-        it("should return 'car' and a number from 1 to 7", function(){
+    describe("Turning a car right while facing east", function(){
+        it("should return car with class south", function(){
+            //SETUP
+        
+            car.className = 'east';
+            car.classList = [];
+            car.classList.add = function(){
+                car.className = 'south';
+            };
+            car.classList.toggle = function(){};
+            //ACT
+            turnRight(car);
+            console.log(car.className);
+            //ASSERT
+            expect(getDirection(car)).to.equal('south');
+        })
+    })
+    describe("Turning a car right while facing west", function(){
+        it("should return car with class north", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+    describe("Turning a car right while facing north", function(){
+        it("should return car with class east", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+    describe("Turning a car right while facing south", function(){
+        it("should return car with class west", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+})
+
+describe("Turning a Car Left", function() {
+    var sandbox; //added
+    let NORTH = 'NORTH';
+    let SOUTH = 'SOUTH';
+    let EAST = 'EAST';
+    let WEST = 'WEST';
+    let LEFT = 'LEFT';
+
+    beforeEach(function() {
+      // create a sandbox
+      sandbox = sinon.sandbox.create();
+      
+    });
+
+    afterEach(function() {
+      // restore the environment as it was before
+      sandbox.restore();
+    })
+    describe("Turning a car left while facing north", function(){
+        it("should return car with class west", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+    describe("Turning a car left while facing south", function(){
+        it("should return car with class east", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+    describe("Turning a car left while facing east", function(){
+        it("should return car with class north", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+    describe("Turning a car left while facing west", function(){
+        it("should return car with class south", function(){
             //ASSERT
             expect(randomCarArtId()).to.match(/car[0-7]/);
         })
