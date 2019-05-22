@@ -99,7 +99,6 @@ describe("Driving a Car Forward", function() {
 
 describe("Driving a Car in Reverse", function(){
     var sandbox;
-    console.log(sandbox);
     let car;
     
     beforeEach(function(){
@@ -183,5 +182,75 @@ describe("Driving a Car in Reverse", function(){
             expect(car.style.top).to.equal('-10px');
             expect(car.style.left).to.equal('0px');
             });
+    })
+})
+
+describe("Adding a Car", function() {
+
+    var sandbox; //added
+    let carCount = 0;
+    // var getElsStub = sinon.stub(document.body, 'getElementById');
+
+    beforeEach(function() {
+      // create a sandbox
+      sandbox = sinon.sandbox.create();
+      
+    });
+
+    afterEach(function() {
+      // restore the environment as it was before
+      sandbox.restore();
+    })
+
+    describe("Creating a car as a div element", function(){
+        it("should add a new div to the document body", function(){
+            //ASSERT
+            expect(addCar()).to.match(/c[0-9]/);
+
+        })
+    })
+})
+describe("Getting a Random Car ID", function() {
+
+    var sandbox; //added
+
+    beforeEach(function() {
+      // create a sandbox
+      sandbox = sinon.sandbox.create();
+      
+    });
+
+    afterEach(function() {
+      // restore the environment as it was before
+      sandbox.restore();
+    })
+
+    describe("Creating a random number from 1 to 7 and adding it to 'car'", function(){
+        it("should return 'car' and a number from 1 to 7", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+})
+describe("Getting a Random Car ID", function() {
+
+    var sandbox; //added
+
+    beforeEach(function() {
+      // create a sandbox
+      sandbox = sinon.sandbox.create();
+      
+    });
+
+    afterEach(function() {
+      // restore the environment as it was before
+      sandbox.restore();
+    })
+
+    describe("Creating a random number from 1 to 7 and adding it to 'car'", function(){
+        it("should return 'car' and a number from 1 to 7", function(){
+            //ASSERT
+            expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
     })
 })
