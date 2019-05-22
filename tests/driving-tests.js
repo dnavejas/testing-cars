@@ -1,5 +1,5 @@
 var expect = chai.expect;
-
+//completed forward
 describe("Driving a Car Forward", function() {
 
     var sandbox; //added
@@ -96,8 +96,8 @@ describe("Driving a Car Forward", function() {
             });
     });
 });
-
-describe("Driving a Car in Reverse", function(){
+//completed reverse
+describe("Driving a Car Reverse", function(){
     var sandbox;
     let car;
     
@@ -184,7 +184,7 @@ describe("Driving a Car in Reverse", function(){
             });
     })
 })
-
+//completed adding a car
 describe("Adding a Car", function() {
 
     var sandbox; //added
@@ -210,6 +210,7 @@ describe("Adding a Car", function() {
         })
     })
 })
+//completed random car ID
 describe("Getting a Random Car ID", function() {
 
     var sandbox; //added
@@ -232,15 +233,12 @@ describe("Getting a Random Car ID", function() {
         })
     })
 })
+//completed turning right
 describe("Turning a Car Right", function() {
 
     var sandbox; //added
-    let NORTH = 'NORTH';
-    let SOUTH = 'SOUTH';
-    let EAST = 'EAST';
-    let WEST = 'WEST';
-    let RIGHT = 'RIGHT';
     let car = {};
+    
     
     beforeEach(function() {
       // create a sandbox
@@ -252,40 +250,64 @@ describe("Turning a Car Right", function() {
       // restore the environment as it was before
       sandbox.restore();
     })
-
     describe("Turning a car right while facing east", function(){
         it("should return car with class south", function(){
             //SETUP
-        
-            car.className = 'east';
+            car.className = 'car east';
             car.classList = [];
             car.classList.add = function(){
-                car.className = 'south';
+                car.className = 'car south';
             };
             car.classList.toggle = function(){};
             //ACT
             turnRight(car);
-            console.log(car.className);
             //ASSERT
-            expect(getDirection(car)).to.equal('south');
+            expect(getDirection(car)).to.equal('SOUTH');
         })
     })
     describe("Turning a car right while facing west", function(){
         it("should return car with class north", function(){
+            //SETUP
+            car.className = 'car west';
+            car.classList = [];
+            car.classList.add = function(){
+                car.className = 'car north';
+            };
+            car.classList.toggle = function(){};
+            //ACT
+            turnRight(car);
             //ASSERT
-            expect(randomCarArtId()).to.match(/car[0-7]/);
+            expect(getDirection(car)).to.equal('NORTH');
         })
     })
     describe("Turning a car right while facing north", function(){
         it("should return car with class east", function(){
+            //SETUP
+            car.className = 'car north';
+            car.classList = [];
+            car.classList.add = function(){
+                car.className = 'car east';
+            };
+            car.classList.toggle = function(){};
+            //ACT
+            turnRight(car);
             //ASSERT
-            expect(randomCarArtId()).to.match(/car[0-7]/);
+            expect(getDirection(car)).to.equal('EAST');
         })
     })
     describe("Turning a car right while facing south", function(){
         it("should return car with class west", function(){
+            //SETUP
+            car.className = 'car south';
+            car.classList = [];
+            car.classList.add = function(){
+                car.className = 'car west';
+            };
+            car.classList.toggle = function(){};
+            //ACT
+            turnRight(car);
             //ASSERT
-            expect(randomCarArtId()).to.match(/car[0-7]/);
+            expect(getDirection(car)).to.equal('WEST');
         })
     })
 })
@@ -330,6 +352,74 @@ describe("Turning a Car Left", function() {
         it("should return car with class south", function(){
             //ASSERT
             expect(randomCarArtId()).to.match(/car[0-7]/);
+        })
+    })
+})
+//completed getting direction
+describe("Getting Direction of a Car", function(){
+    var sandbox;
+    let car = {};
+    let classes = car.className;
+    let direction = "";
+
+    let NORTH = 'NORTH';
+    let SOUTH = 'SOUTH';
+    let EAST = 'EAST';
+    let WEST = 'WEST';
+
+    beforeEach(function() {
+        // create a sandbox
+        sandbox = sinon.sandbox.create();
+        
+      });
+  
+    afterEach(function() {
+        // restore the environment as it was before
+        sandbox.restore();
+    })
+    
+    describe("Checking class of car object for 'North'", function(){
+        it("should return an object equal to 'NORTH'", function(){
+            //SETUP
+            car.className = "car north";
+            //ACT
+            getDirection(car);
+            //ASSERT
+            expect(getDirection(car)).to.equal(NORTH);
+
+        })
+    })
+    describe("Checking class of car object for 'East'", function(){
+        it("should return an object equal to 'EAST'", function(){
+            //SETUP
+            car.className = "car east";
+            //ACT
+            getDirection(car);
+            //ASSERT
+            expect(getDirection(car)).to.equal(EAST);
+
+        })
+    })
+    describe("Checking class of car object for 'South'", function(){
+        it("should return an object equal to 'South'", function(){
+            //SETUP
+            car.className = "car south";
+            //ACT
+            getDirection(car);
+            //ASSERT
+            expect(getDirection(car)).to.equal(SOUTH);
+
+        })
+    })
+    describe("Checking class of car object for 'West'", function(){
+        it("should return an object equal to 'WEST'", function(){
+            //SETUP
+            car.className = "car west";
+            //ACT
+            getDirection(car);
+            //ASSERT
+            expect(getDirection(car)).to.equal(WEST);
+
         })
     })
 })
