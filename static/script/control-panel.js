@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){ 
+// document.addEventListener('DOMContentLoaded', function(){ 
     let cars = document.querySelector("#cars");
     let btnNewCar = document.querySelector("#new-car");
     let btnTurnRight = document.querySelector("#turn-right");
@@ -7,41 +7,29 @@ document.addEventListener('DOMContentLoaded', function(){
     let btnReverse = document.querySelector("#reverse");
 
     btnNewCar.addEventListener("click", function(){
-        newCarAndUpdateUi();
+        newCarAndUpdateUi(cars);
     });
 
     btnTurnRight.addEventListener("click", function() {
-        turnRight(getSelectedCar());
+        turnRight(getSelectedCar(cars));
     });
 
     btnTurnLeft.addEventListener("click", function() {
-        turnLeft(getSelectedCar());
+        turnLeft(getSelectedCar(cars));
     });
 
     btnForward.addEventListener("click", function() {
-        forward(getSelectedCar());
+        forward(getSelectedCar(cars));
     });
 
     btnReverse.addEventListener("click", function() {
-        reverse(getSelectedCar());
+        reverse(getSelectedCar(cars));
     });
 
-    function getSelectedCar() {
+    function getSelectedCar(cars) {
         let car = document.querySelector("#" + cars[cars.selectedIndex].value);
         return car;
     }
-
-    //right 39 
-    //w 87
-    //left 37 
-    //s 83
-    //down 40 
-    //a 65
-    //up 38 
-    //d 68
-
-    //right arrow pressed
-    //turn right
     document.addEventListener("keydown", event => {
         if (event.keyCode === 39 || event.keyCode === 68) {
           turnRight(getSelectedCar());
@@ -87,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-    function toggleActiveCar() {
+    function toggleActiveCar(cars) {
         
         getSelectedCar().classList.toggle("selected-car");
 
@@ -101,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function(){
         getSelectedCar().classList.toggle("selected-car");
     }
 
-    function newCarAndUpdateUi() {
+    function newCarAndUpdateUi(cars) {
         if(cars.selectedIndex > -1) {
-            getSelectedCar().classList.toggle("selected-car");
+            getSelectedCar(cars).classList.toggle("selected-car");
         }
         let carId = addCar();
         var opt = document.createElement('option');
@@ -113,6 +101,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         cars.selectedIndex = cars.length - 1;
 
-        getSelectedCar().classList.toggle("selected-car");
+        getSelectedCar(cars).classList.toggle("selected-car");
     }
-});
+// });

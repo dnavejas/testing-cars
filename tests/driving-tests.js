@@ -1,5 +1,5 @@
 var expect = chai.expect;
-describe("Testing Each Function", function(){
+describe("Testing Each Function In Drive and Paint files", function(){
     var sandbox;
     
     let car;
@@ -449,6 +449,7 @@ describe("Testing Each Function", function(){
             })
         })
     })
+    //completed turnIt function
     describe("Turning a car based on direction and command", function(){
         describe("Checking if a car has turned while facing north", function(){
             it("Checking if a car has turned left while facing north", function(){
