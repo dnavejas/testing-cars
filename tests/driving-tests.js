@@ -366,7 +366,7 @@ describe("Testing Each Function", function(){
             })
         })
     })
-
+    //completed moveIt function
     describe("Moving a Car", function(){
         describe("Checking if a car has moved while facing North", function(){
             it("if moved forward the top position of the car should be -10px", function(){
@@ -446,6 +446,120 @@ describe("Testing Each Function", function(){
                 moveIt(car, WEST, REVERSE);
                 //ASSERT
                 expect(car.style.left).to.equal("10px");
+            })
+        })
+    })
+    describe("Turning a car based on direction and command", function(){
+        describe("Checking if a car has turned while facing north", function(){
+            it("Checking if a car has turned left while facing north", function(){
+                //SETUP
+                car.className = "car north";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car west"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car west");
+            })
+            it("Checking if a car has turned right while facing north", function(){
+                //SETUP
+                car.className = "car north";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car east"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car east");
+            })
+        })
+        describe("Checking if a car has turned while facing south", function(){
+            it("Checking if a car has turned left while facing south", function(){
+                //SETUP
+                car.className = "car south";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car east"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car east");
+            })
+            it("Checking if a car has turned right while facing south", function(){
+                //SETUP
+                car.className = "car south";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car east"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car east");
+            })
+        })
+        describe("Checking if a car has turned while facing east", function(){
+            it("Checking if a car has turned left while facing east", function(){
+                //SETUP
+                car.className = "car east";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car north"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car north");
+            })
+            it("Checking if a car has turned right while facing east", function(){
+                //SETUP
+                car.className = "car east";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car south"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car south");
+            })
+        })
+        describe("Checking if a car has turned while facing west", function(){
+            it("Checking if a car has turned left while facing west", function(){
+                //SETUP
+                car.className = "car west";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car south"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car south");
+            })
+            it("Checking if a car has turned right while facing west", function(){
+                //SETUP
+                car.className = "car west";
+                car.classList = [];
+                car.classList.add = function(){
+                    car.className = "car north"
+                }
+                car.classList.toggle = function (){};
+                //ACT
+                turnIt(car, NORTH, LEFT)
+                //ASSERT
+                expect(car.className).to.equal("car north");
             })
         })
     })
