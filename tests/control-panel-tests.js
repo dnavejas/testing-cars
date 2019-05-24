@@ -57,17 +57,31 @@ describe("Car Controls", function () {
             // test the return car
         })
     })
-    describe("Selected Car turn-left", function () {
-        it("Should return the selected car", function () {
+    describe("Selected Car move forward", function () {
+        it("Should increase the selected car's left position", function () {
             //SETUP
             newCarAndUpdateUi(carsSelectElement)
             let selectedCar = getSelectedCar(carsSelectElement);
 
             //ACT
-            turnLeft(selectedCar);
+            forward(selectedCar);
 
             //ASSERT
-            expect(selectedCar.className.includes('north')).to.equal(true);
+            expect(selectedCar.style.left).to.equal("10px");
+            // test the return car
+        })
+    })
+    describe("Selected Car move reverse", function () {
+        it("Should decrease the selected car's left position", function () {
+            //SETUP
+            newCarAndUpdateUi(carsSelectElement)
+            let selectedCar = getSelectedCar(carsSelectElement);
+
+            //ACT
+            reverse(selectedCar);
+
+            //ASSERT
+            expect(selectedCar.style.left).to.equal("-10px");
             // test the return car
         })
     })
