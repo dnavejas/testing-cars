@@ -9,7 +9,8 @@ describe("Car Controls", function () {
     beforeEach(function () {
         // create a sandbox
         sandbox = sinon.sandbox.create();
-        carsSelectElement = document.createElement('select')
+        
+        carsSelectElement = document.createElement('select');
 
     });
 
@@ -17,45 +18,57 @@ describe("Car Controls", function () {
         sandbox.restore();
     });
 
-    //cars
+    //completed add new car
     describe("Create", function () {
         it("should add a new car option to the cars select element", function () {
             //ACT
-
             newCarAndUpdateUi(carsSelectElement)
 
             //ASSERT
             expect(carsSelectElement.childElementCount).to.equal(1);
         })
     })
-    // turn-right
+    // completed turn right
     describe("Selected Car turn-right", function () {
-        it("Should return the selected car", function () {
-            //ACT
+        it("Should return the selected car with class of south", function () {
+            //SETUP
             newCarAndUpdateUi(carsSelectElement)
+            let selectedCar = getSelectedCar(carsSelectElement);
 
-            let selectedCar = getSelectedCar(carsSelectElement)
-            turnRight(selectedCar)
+            //ACT
+            turnRight(selectedCar);
 
             //ASSERT
             expect(selectedCar.className.includes('south')).to.equal(true);
             // test the return car
         })
-
     })
-    //  // turn-right
-    //  describe("Selected Car turn-right", function () {
-    //     it("Should return the selected car", function () {
-    //         //ACT
-    //         newCarAndUpdateUi(carsSelectElement)
+    describe("Selected Car turn-left", function () {
+        it("Should return the selected car", function () {
+            //SETUP
+            newCarAndUpdateUi(carsSelectElement)
+            let selectedCar = getSelectedCar(carsSelectElement);
 
-    //         let selectedCar = getSelectedCar(carsSelectElement)
-    //         turnRight(selectedCar)
+            //ACT
+            turnLeft(selectedCar);
 
-    //         //ASSERT
-    //         expect(selectedCar.className.includes('south')).to.equal(true);
-    //         // test the return car
-    //     })
+            //ASSERT
+            expect(selectedCar.className.includes('north')).to.equal(true);
+            // test the return car
+        })
+    })
+    describe("Selected Car turn-left", function () {
+        it("Should return the selected car", function () {
+            //SETUP
+            newCarAndUpdateUi(carsSelectElement)
+            let selectedCar = getSelectedCar(carsSelectElement);
 
-    // })
+            //ACT
+            turnLeft(selectedCar);
+
+            //ASSERT
+            expect(selectedCar.className.includes('north')).to.equal(true);
+            // test the return car
+        })
+    })
 });
