@@ -78,7 +78,7 @@ describe("Car Controls", function () {
             let selectedCar = getSelectedCar(carsSelectElement);
 
             //ACT
-            reverse(selectedCar);
+            rever(selectedCar);
 
             //ASSERT
             expect(selectedCar.style.left).to.equal("-10px");
